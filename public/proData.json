@@ -1,0 +1,40 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Marcedes",
+            "location": "Sylhet Sadar",
+            "resalePprice": 549,
+            "originalPprice": 1200,
+            "yearOfUse": 2012,
+            "sellerName": "",
+            "postTime": "",
+            "category": "Luxury Car",
+            "images": "https://ibb.co/MSbykhg"
+        },
+        {
+            "id": 2,
+            "name": "BMW",
+            "location": "Cox's Sadar",
+            "resalePprice": 800,
+            "originalPprice": 2399,
+            "yearOfUse": 2020,
+            "sellerName": "",
+            "postTime": "",
+            "category": "Luxury Car",
+            "images": "https://ibb.co/mGhwc10"
+        },
+        {
+            "id": 3,
+            "name": "Tesla",
+            "location": "Dhaka",
+            "resalePprice": 1800,
+            "originalPprice": 3100,
+            "yearOfUse": 2014,
+            "sellerName": "",
+            "postTime": "",
+            "category": "Luxury Car",
+            "images": "https://ibb.co/VVpJL1C"
+        }
+    ]
+}
