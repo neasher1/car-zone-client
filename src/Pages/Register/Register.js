@@ -12,13 +12,6 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
-    // const [createdUserEmail, setCreatedUserEmail] = useState('');
-    // const [token] = useToken(createdUserEmail);
-
-    // if (token) {
-    //     navigate('/');
-    // }
-
     const handleSignUp = (data, event) => {
         createUser(data.email, data.password)
             .then(result => {
@@ -27,13 +20,13 @@ const Register = () => {
                 toast.success("Successfully User Created");
                 event.target.reset();
 
-                fetch(`http://localhost:5000/jwt?email=${data.email}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.accessToken) {
-                            localStorage.setItem('accessToken', data.accessToken);
-                        }
-                    })
+                // fetch(`http://localhost:5000/jwt?email=${data.email}`)
+                //     .then(res => res.json())
+                //     .then(data => {
+                //         if (data.accessToken) {
+                //             localStorage.setItem('accessToken', data.accessToken);
+                //         }
+                //     })
 
                 const userInfo = {
                     displayName: data.name,
@@ -46,7 +39,7 @@ const Register = () => {
                     .catch(error => {
                         console.log(error.message);
                     })
-                navigate('/');
+                // navigate('/');
             })
             .catch(error => {
                 toast.error(error.message);
@@ -69,7 +62,16 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                if (data.acknowledged) {
+                    fetch(`http://localhost:5000/jwt?email=${email}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.accessToken) {
+                                localStorage.setItem('accessToken', data.accessToken);
+                            }
+                        })
+                    navigate('/');
+                }
             })
 
     }
