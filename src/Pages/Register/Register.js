@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import useToken from '../../hooks/useToken';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -13,12 +12,12 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
-    const [createdUserEmail, setCreatedUserEmail] = useState('');
-    const [token] = useToken(createdUserEmail);
+    // const [createdUserEmail, setCreatedUserEmail] = useState('');
+    // const [token] = useToken(createdUserEmail);
 
-    if (token) {
-        navigate('/');
-    }
+    // if (token) {
+    //     navigate('/');
+    // }
 
     const handleSignUp = (data, event) => {
         createUser(data.email, data.password)
@@ -28,29 +27,37 @@ const Register = () => {
                 toast.success("Successfully User Created");
                 event.target.reset();
 
+                fetch(`http://localhost:5000/jwt?email=${data.email}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.accessToken) {
+                            localStorage.setItem('accessToken', data.accessToken);
+                        }
+                    })
+
                 const userInfo = {
                     displayName: data.name,
                 }
 
                 updateUser(userInfo)
                     .then(() => {
-                        savedUsertoDb(data.name, data.email, data.buyer, data.seller);
+                        savedUsertoDb(data.name, data.email, data.account);
                     })
                     .catch(error => {
                         console.log(error.message);
                     })
+                navigate('/');
             })
             .catch(error => {
                 toast.error(error.message);
             });
     }
 
-    const savedUsertoDb = (name, email, buyer, seller) => {
+    const savedUsertoDb = (name, email, account) => {
         const user = {
             name,
             email,
-            buyer,
-            seller
+            role: account
         }
 
         fetch('http://localhost:5000/users', {
@@ -62,9 +69,7 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged) {
-                    setCreatedUserEmail(email);
-                }
+                console.log(data);
             })
 
     }
@@ -124,7 +129,7 @@ const Register = () => {
                         {errors.password && <span className='text-error'>{errors.password.message}</span>}
                     </div>
 
-                    <div className="form-control my-4">
+                    {/* <div className="form-control my-4">
                         <span className='font-semibold'>Please select account type</span>
                         <label className="label cursor-pointer">
                             <span className="label-text">Buyer</span>
@@ -141,6 +146,15 @@ const Register = () => {
                                 {...register("seller")}
                                 type="checkbox" className="toggle" />
                         </label>
+                    </div> */}
+
+                    <div className="form-control">
+                        <div className="input-group">
+                            <select {...register("account")} className="select select-bordered">
+                                <option value="buyer">Buyer</option>
+                                <option value="seller">Seller</option>
+                            </select>
+                        </div>
                     </div>
 
                     <input className='btn btn-accent w-full text-white my-4' type="submit" value="Register" />

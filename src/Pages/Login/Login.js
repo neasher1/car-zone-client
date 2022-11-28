@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import useToken from '../../hooks/useToken';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -16,13 +15,6 @@ const Login = () => {
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/";
 
-    const [loginInUserEmail, setLoginUserEmail] = useState('');
-    const [token] = useToken(loginInUserEmail);
-
-    if (token) {
-        navigate(from, { replace: true });
-    }
-
     const handleLogin = (data, event) => {
         signInUser(data.email, data.password)
             .then(result => {
@@ -30,7 +22,15 @@ const Login = () => {
                 // console.log(user);
                 toast.success("Successfully logged in");
                 event.target.reset();
-                setLoginUserEmail(data.email);
+
+                fetch(`http://localhost:5000/jwt?email=${data.email}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.accessToken) {
+                            localStorage.setItem('accessToken', data.accessToken);
+                        }
+                    })
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 toast.error(error.message);

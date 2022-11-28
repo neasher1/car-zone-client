@@ -20,7 +20,13 @@ const AuthProvider = ({ children }) => {
     }
 
     const signInWithGoogle = (googleProvider) => {
+        setLoading(true);
         return signInWithPopup(auth, googleProvider);
+    }
+
+    const updateUser = (userInfo) => {
+        setLoading(true);
+        return updateProfile(auth.currentUser, userInfo);
     }
 
     useEffect(() => {
@@ -34,11 +40,7 @@ const AuthProvider = ({ children }) => {
             unsubscribe();
         }
 
-    })
-
-    const updateUser = (userInfo) => {
-        return updateProfile(auth.currentUser, userInfo);
-    }
+    }, []);
 
     const logOut = () => {
         setLoading(true);
