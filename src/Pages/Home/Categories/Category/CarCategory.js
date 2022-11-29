@@ -4,7 +4,7 @@ import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
 
 const CarCategory = ({ car, setBookCars }) => {
 
-    const { name, image, location, model, originalPrice, postingDate, resalePrice, sellerName, uses, _id } = car;
+    const { name, image, location, model, originalPrice, postingDate, resalePrice, sellerName, uses } = car;
     const { user } = useContext(AuthContext);
 
     return (
