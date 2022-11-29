@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import BookingModal from '../BookingModal/BookingModal';
 import CarCategory from './CarCategory';
 
 const CarCategories = () => {
 
     const cars = useLoaderData();
+    const [bookCars, setBookCars] = useState(null);
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 my-12  max-w-[1440px] mx-auto'>
+        <section className='max-w-[1440px] mx-auto my-16'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20'>
+                {
+                    cars.map(car => <CarCategory
+                        key={car._id}
+                        car={car}
+                        setBookCars={setBookCars}
+                    ></CarCategory>)
+                }
+            </div>
             {
-                cars.map(car => <CarCategory
-                    key={car._id}
-                    car={car}
-                ></CarCategory>)
+                bookCars &&
+                <BookingModal
+                    bookCars={bookCars}
+                    setBookCars={setBookCars}
+                ></BookingModal>
             }
-        </div>
+        </section>
     );
 };
 

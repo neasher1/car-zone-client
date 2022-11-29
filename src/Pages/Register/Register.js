@@ -131,26 +131,7 @@ const Register = () => {
                         {errors.password && <span className='text-error'>{errors.password.message}</span>}
                     </div>
 
-                    {/* <div className="form-control my-4">
-                        <span className='font-semibold'>Please select account type</span>
-                        <label className="label cursor-pointer">
-                            <span className="label-text">Buyer</span>
-                            <input
-                                {...register("buyer")}
-                                type="checkbox" className="toggle" />
-                        </label>
-                    </div>
-
-                    <div className="form-control mb-4">
-                        <label className="label cursor-pointer">
-                            <span className="label-text">Seller</span>
-                            <input
-                                {...register("seller")}
-                                type="checkbox" className="toggle" />
-                        </label>
-                    </div> */}
-
-                    <div className="form-control">
+                    <div className="form-control w-full max-w-xs my-4">
                         <div className="input-group">
                             <select {...register("account")} className="select select-bordered">
                                 <option value="buyer">Buyer</option>
