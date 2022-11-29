@@ -31,6 +31,7 @@ const AddProducts = () => {
 
                     const addProduct = {
                         sellerName: user?.displayName,
+                        email: user?.email,
                         image: imgData.data.url,
                         name: data.carName,
                         model: data.model,
@@ -53,7 +54,7 @@ const AddProducts = () => {
                         .then(res => res.json())
                         .then(data => {
                             toast.success('Product Uploaded Successfully');
-                            navigation('/dashboard/my-product');
+                            navigation('/dashboard/my-products');
                         })
 
                 }
