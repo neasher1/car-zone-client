@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
 
 const BookingModal = ({ bookCars, setBookCars }) => {
     const { user } = useContext(AuthContext);
-    const { name, image, location, model, originalPrice, postingDate, resalePrice, sellerName, uses, _id } = bookCars;
-    // console.log(bookCars);
+    const { name, image, model, resalePrice } = bookCars;
+    const navigate = useNavigate();
     const handleBooking = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -41,7 +42,7 @@ const BookingModal = ({ bookCars, setBookCars }) => {
                 if (data.acknowledged) {
                     setBookCars(null);
                     toast.success("Booking Confirmed");
-                    //TODO: navigate my order page
+                    navigate('/dashboard/my-orders');
                 }
             })
 
