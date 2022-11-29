@@ -20,14 +20,6 @@ const Register = () => {
                 toast.success("Successfully User Created");
                 event.target.reset();
 
-                // fetch(`http://localhost:5000/jwt?email=${data.email}`)
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         if (data.accessToken) {
-                //             localStorage.setItem('accessToken', data.accessToken);
-                //         }
-                //     })
-
                 const userInfo = {
                     displayName: data.name,
                 }
