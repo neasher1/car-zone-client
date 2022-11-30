@@ -10,7 +10,7 @@ const MyProducts = () => {
     const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['myProducts'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/my-products?email=${user?.email}`, {
+            const res = await fetch(`https://car-zone-server.vercel.app/my-products?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -21,7 +21,7 @@ const MyProducts = () => {
     });
 
     const deleteProduct = (id) => {
-        fetch(`http://localhost:5000/deleteproduct/${id}`, {
+        fetch(`https://car-zone-server.vercel.app/deleteproduct/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -35,14 +35,14 @@ const MyProducts = () => {
 
     // handle advertisement
     const handleAdvertise = (id) => {
-        fetch(`http://localhost:5000/advertise?id=${id}`, {
+        fetch(`https://car-zone-server.vercel.app/advertise?id=${id}`, {
             method: 'POST',
         })
             .then(res => res.json())
             .then(res => {
                 toast.success('Advertise Item Successfully');
                 // update status on my product
-                fetch(`http://localhost:5000/advertise?id=${id}`, {
+                fetch(`https://car-zone-server.vercel.app/advertise?id=${id}`, {
                     method: 'PUT'
                 })
                     .then(res => res.json())

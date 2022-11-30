@@ -23,7 +23,7 @@ const Login = () => {
                 toast.success("Successfully logged in");
                 event.target.reset();
 
-                fetch(`http://localhost:5000/jwt?email=${data.email}`)
+                fetch(`https://car-zone-server.vercel.app/jwt?email=${data.email}`)
                     .then(res => res.json())
                     .then(data => {
                         if (data.accessToken) {
@@ -38,16 +38,47 @@ const Login = () => {
     }
 
 
+    // const handleSignInGoogle = () => {
+    //     signInWithGoogle(googleProvider)
+    //         .then(result => {
+    //             const user = result.user;
+    //             toast.success("successfully logged in");
+    //             navigate('/');
+    //         })
+    //         .catch(error => {
+    //             toast.error(error.message);
+    //         })
+    // }
     const handleSignInGoogle = () => {
         signInWithGoogle(googleProvider)
-            .then(result => {
-                const user = result.user;
-                toast.success("successfully logged in");
-                navigate('/');
+            .then(res => {
+                fetch(`https://car-zone-server.vercel.app/jwt?email=${res.user.email}`)
+                    .then(res => res.json())
+                    .then(token => {
+                        localStorage.setItem('accessToken', token.accessToken);
+                        const user = {
+                            name: res.user.displayName,
+                            email: res.user.email,
+                            role: 'buyer',
+                        };
+                        fetch('https://car-zone-server.vercel.app/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(user)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                toast.success('Register successfully')
+                                navigate('/dashboard')
+
+                            })
+                    });
+
+
             })
-            .catch(error => {
-                toast.error(error.message);
-            })
+            .catch(err => toast.error(err))
     }
 
     return (

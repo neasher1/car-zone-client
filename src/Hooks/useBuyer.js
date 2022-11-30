@@ -5,7 +5,7 @@ const useBuyer = email => {
     const [BuyerLoading, setBuyerLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/buyer?email=${email}`, {
+            fetch(`https://car-zone-server.vercel.app/buyer?email=${email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

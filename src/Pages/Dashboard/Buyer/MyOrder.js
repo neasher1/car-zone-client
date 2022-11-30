@@ -11,7 +11,7 @@ const MyOrder = () => {
         queryKey: ['orders'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/booking?email=${user?.email}`, {
+                const res = await fetch(`https://car-zone-server.vercel.app/booking?email=${user?.email}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -34,7 +34,7 @@ const MyOrder = () => {
             <h2 className="text-3xl font-bold text-primary mb-6">My Orders</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20'>
                 {
-                    orders.map(order => <Order
+                    orders?.map(order => <Order
                         key={order._id}
                         order={order}
                     ></Order>)

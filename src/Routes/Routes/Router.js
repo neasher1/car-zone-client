@@ -28,7 +28,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/:category_name',
-                loader: ({ params }) => fetch(`http://localhost:5000/all-cars/${params.category_name}`),
+                loader: ({ params }) => fetch(`https://car-zone-server.vercel.app/all-cars/${params.category_name}`),
                 element: <PrivateRoute><CarCategories></CarCategories></PrivateRoute>,
             },
             {

@@ -44,7 +44,7 @@ const AddProducts = () => {
                         phn: data.phn
                     }
 
-                    fetch('http://localhost:5000/uploadCar', {
+                    fetch('https://car-zone-server.vercel.app/uploadCar', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
