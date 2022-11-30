@@ -43,7 +43,7 @@ const AllSellers = () => {
     return (
         <div>
             <div className='card shadow-2xl p-8 m-4 w-full'>
-                <h3 className="text-2xl mb-4">All Buyers</h3>
+                <h3 className="text-2xl mb-4">All Sellers</h3>
                 <div className="overflow-x-auto">
                     <table className="table w-full">
                         <thead>
@@ -52,6 +52,7 @@ const AllSellers = () => {
                                 <th>Buyer Name</th>
                                 <th>Email</th>
                                 <th>Action</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>

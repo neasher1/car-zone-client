@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
@@ -6,6 +7,15 @@ const CarCategory = ({ car, setBookCars }) => {
 
     const { name, image, location, model, originalPrice, postingDate, resalePrice, sellerName, uses } = car;
     const { user } = useContext(AuthContext);
+
+    const { data: verifiedSeller = [], refetch } = useQuery({
+        queryKey: ['verifiedSeller'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/verifiedseller?email=${user?.email}`)
+            const data = await res.json();
+            return data;
+        }
+    });
 
     return (
         <div className="card card-compact bg-base-100 shadow-xl">
@@ -32,8 +42,13 @@ const CarCategory = ({ car, setBookCars }) => {
                             :
                             <Link to='/login' className='btn btn-primary text-white'>Login to Book</Link>
                     }
-
-                    <button className="btn btn-primary text-white my-2">Verified</button>
+                    {
+                        verifiedSeller
+                            ?
+                            <button className='btn btn-primary text-primary' disabled>Seller: Verified</button>
+                            :
+                            <button className='btn btn-error' disabled>Seller: Unverified</button>
+                    }
                 </div>
             </div>
         </div>
