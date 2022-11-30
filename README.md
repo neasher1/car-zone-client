@@ -1,4 +1,4 @@
-# Project Name : Pepperoni
+# Project Name : Car Zone
 
 LIVE WEBSITE LINK [Car Zone](https://car-zone-f6b1a.web.app/).
 
