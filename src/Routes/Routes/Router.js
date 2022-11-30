@@ -1,6 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
+import AllBuyers from "../../Pages/Dashboard/Admin/AllBuyers";
+import AllSellers from "../../Pages/Dashboard/Admin/AllSellers";
+import ReportedItems from "../../Pages/Dashboard/Admin/ReportedItems";
 import MyOrder from "../../Pages/Dashboard/Buyer/MyOrder";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import AddProducts from "../../Pages/Dashboard/Seller/AddProducts";
@@ -56,6 +59,18 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/my-products',
                 element: <MyProducts></MyProducts>,
+            },
+            {
+                path: '/dashboard/all-buyers',
+                element: <AllBuyers></AllBuyers>,
+            },
+            {
+                path: '/dashboard/all-sellers',
+                element: <AllSellers></AllSellers>,
+            },
+            {
+                path: '/dashboard/reported-items',
+                element: <ReportedItems></ReportedItems>,
             },
         ]
     }
