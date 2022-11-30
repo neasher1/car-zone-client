@@ -35,7 +35,6 @@ const MyProducts = () => {
 
     // handle advertisement
     const handleAdvertise = (id) => {
-        console.log(id)
         fetch(`http://localhost:5000/advertise?id=${id}`, {
             method: 'POST',
         })

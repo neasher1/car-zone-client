@@ -55,6 +55,7 @@ const BookingModal = ({ bookCars, setBookCars }) => {
                 <div className="modal-box relative">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-xl font-bold text-primary">Book Now</h3>
+
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 my-4'>
 
                         <input type="name" name='name' defaultValue={user?.displayName} readOnly className="input input-bordered w-full" />

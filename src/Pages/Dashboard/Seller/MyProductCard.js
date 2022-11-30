@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MyProductCard = ({ myProduct, deleteProduct }) => {
-    const { image, name, model, postingDate, originalPrice, resalePrice, _id } = myProduct;
+const MyProductCard = ({ myProduct, deleteProduct, handleAdvertise }) => {
+    const { image, name, model, postingDate, originalPrice, resalePrice, _id, advertise } = myProduct;
     return (
         <div className="card shadow-xl mt-4">
             <figure>
@@ -22,9 +22,12 @@ const MyProductCard = ({ myProduct, deleteProduct }) => {
                         <Link className='text-white'>Unsold</Link>
                     </button>
                 </div>
-                <button className="btn btn-primary w-full">
-                    <Link className='text-white'>Advertise Car</Link>
-                </button>
+                <Link>
+                    {
+                        advertise ? <Link className="btn w-full" disabled> Advertised</Link> :
+                            <Link onClick={() => handleAdvertise(_id)} className='w-full text-white btn btn-primary '>Advertise Car</Link>
+                    }
+                </Link>
             </div>
         </div>
     );
