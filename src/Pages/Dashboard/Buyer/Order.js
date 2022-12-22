@@ -3,7 +3,7 @@ import React from 'react';
 const Order = ({ order }) => {
 
     const { image, itemName, price, carModel, meetLocation } = order;
-    console.log(order);
+    // console.log(order);
 
     return (
         <div className="card shadow-xl">

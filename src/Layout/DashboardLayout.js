@@ -4,7 +4,6 @@ import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 import useAdmin from '../Hooks/useAdmin';
 import useBuyer from '../Hooks/useBuyer';
 import useSeller from '../Hooks/useSeller';
-import Footer from '../Pages/Shared/Footer/Footer';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const DashboardLayout = () => {
@@ -12,47 +11,54 @@ const DashboardLayout = () => {
     const [isBuyer] = useBuyer(user?.email);
     const [isSeller] = useSeller(user?.email);
     const [isAdmin] = useAdmin(user?.email);
-    // w-full lg:w-2/5 md:w-2/5  mx-auto md:mx-auto lg:mr-16
+
     return (
-        <div>
+
+        <div className='mx-auto'>
             <Navbar></Navbar>
-            <div className="max-w-[1440px] mx-auto flex-none lg:flex">
-                <div className='w-full lg:w-1/4 md:w-2/5 md:mx-auto bg-gradient-to-r from-accent to-primary'>
-                    <ul className="menu p-4 text-white">
-                        <div>
-                            {
-                                user?.email &&
-                                <li><Link className='btn btn-outline my-4' to='/dashboard'>My Dashboard</Link></li>
-                            }
-                            {
-                                isBuyer &&
-                                <>
-                                    <li><Link className='btn btn-outline my-4' to='/dashboard/my-orders'>My Orders</Link></li>
-                                </>
-                            }
-                            {
-                                isSeller &&
-                                <>
-                                    <li><Link className='btn btn-outline my-4' to='/dashboard/add-product'>Add Product</Link></li>
-                                    <li><Link className='btn btn-outline my-4' to='/dashboard/my-products'>My Products</Link></li>
-                                </>
-                            }
-                            {
-                                isAdmin &&
-                                <>
-                                    <li><Link className='btn btn-outline my-4' to='/dashboard/all-sellers'>All Sellers</Link></li>
-                                    <li><Link className='btn btn-outline my-4' to='/dashboard/all-buyers'>All Buyers</Link></li>
-                                    <li><Link className='btn btn-outline my-4' to='/dashboard/reported-items'>Reported Items</Link></li>
-                                </>
-                            }
-                        </div>
-                    </ul>
+            <div className="drawer drawer-mobile">
+                <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
+                <div className="drawer-content px-5 md:px-14 my-16">
+                    <Outlet />
                 </div>
-                <div className='mx-auto'>
-                    <Outlet></Outlet>
+                <div className="drawer-side">
+                    <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+
+                    <div className='bg-gradient-to-r from-accent to-primary'>
+                        <ul className="menu p-4 w-80 lg:bg-opacity-0 text-white">
+                            <div>
+                                {
+                                    user?.email &&
+                                    <li><Link className='btn btn-outline my-4' to='/dashboard'>My Dashboard</Link></li>
+                                }
+                                {
+                                    isBuyer &&
+                                    <>
+                                        <li><Link className='btn btn-outline my-4' to='/dashboard/my-orders'>My Orders</Link></li>
+                                    </>
+                                }
+                                {
+                                    isSeller &&
+                                    <>
+                                        <li><Link className='btn btn-outline my-4' to='/dashboard/add-product'>Add Product</Link></li>
+                                        <li><Link className='btn btn-outline my-4' to='/dashboard/my-products'>My Products</Link></li>
+                                    </>
+                                }
+                                {
+                                    isAdmin &&
+                                    <>
+                                        <li><Link className='btn btn-outline my-4' to='/dashboard/all-sellers'>All Sellers</Link></li>
+                                        <li><Link className='btn btn-outline my-4' to='/dashboard/all-buyers'>All Buyers</Link></li>
+                                        <li><Link className='btn btn-outline my-4' to='/dashboard/reported-items'>Reported Items</Link></li>
+                                    </>
+                                }
+                            </div>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
-            <Footer></Footer>
+
         </div>
     );
 };
