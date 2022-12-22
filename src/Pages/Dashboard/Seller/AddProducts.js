@@ -63,7 +63,7 @@ const AddProducts = () => {
 
 
     return (
-        <div className='my-6'>
+        <div>
             <h2 className="text-3xl font-bold text-primary">Add a Product</h2>
             <div className='my-6 flex justify-center items-center'>
                 <div className='card shadow-2xl p-8'>

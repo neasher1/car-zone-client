@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { MdOutlineDashboardCustomize } from 'react-icons/md';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const navigate = useNavigate();
-
+    const location = useLocation();
 
     const handleLogOut = () => {
         logOut()
@@ -47,10 +48,25 @@ const Navbar = () => {
                 </div>
                 <Link to='/' className="btn btn-ghost normal-case text-xl text-white">Car Zone</Link>
             </div>
-            <div className="navbar-end hidden lg:flex text-white">
-                <ul className="menu menu-horizontal p-0">
-                    {menuItems}
-                </ul>
+
+            <div className='navbar-end'>
+
+                <div className="hidden lg:flex text-white">
+                    <ul className="menu menu-horizontal p-0">
+                        {menuItems}
+                    </ul>
+                </div>
+
+                <div>
+                    {
+                        ((location.pathname === '/dashboard') || (location.pathname.startsWith('/dashboard/'))) &&
+
+                        <div className="drawer-content block md:hidden">
+                            <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button"><MdOutlineDashboardCustomize className='text-2xl text-white' /></label>
+                        </div>
+                    }
+                </div>
+
             </div>
         </div>
     );

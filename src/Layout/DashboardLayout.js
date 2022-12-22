@@ -24,39 +24,38 @@ const DashboardLayout = () => {
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
 
-                    <div className='bg-gradient-to-r from-accent to-primary'>
-                        <ul className="menu p-4 w-80 lg:bg-opacity-0 text-white">
-                            <div>
-                                {
-                                    user?.email &&
-                                    <li><Link className='btn btn-outline my-4' to='/dashboard'>My Dashboard</Link></li>
-                                }
-                                {
-                                    isBuyer &&
-                                    <>
-                                        <li><Link className='btn btn-outline my-4' to='/dashboard/my-orders'>My Orders</Link></li>
-                                    </>
-                                }
-                                {
-                                    isSeller &&
-                                    <>
-                                        <li><Link className='btn btn-outline my-4' to='/dashboard/add-product'>Add Product</Link></li>
-                                        <li><Link className='btn btn-outline my-4' to='/dashboard/my-products'>My Products</Link></li>
-                                    </>
-                                }
-                                {
-                                    isAdmin &&
-                                    <>
-                                        <li><Link className='btn btn-outline my-4' to='/dashboard/all-sellers'>All Sellers</Link></li>
-                                        <li><Link className='btn btn-outline my-4' to='/dashboard/all-buyers'>All Buyers</Link></li>
-                                        <li><Link className='btn btn-outline my-4' to='/dashboard/reported-items'>Reported Items</Link></li>
-                                    </>
-                                }
-                            </div>
-                        </ul>
-                    </div>
+                    <ul className="menu p-4 w-80 lg:bg-opacity-0 text-white bg-gradient-to-r from-accent to-primary">
+                        <div>
+                            {
+                                user?.email &&
+                                <li><Link className='btn btn-outline my-4' to='/dashboard'>My Dashboard</Link></li>
+                            }
+                            {
+                                isBuyer &&
+                                <>
+                                    <li><Link className='btn btn-outline my-4' to='/dashboard/my-orders'>My Orders</Link></li>
+                                </>
+                            }
+                            {
+                                isSeller &&
+                                <>
+                                    <li><Link className='btn btn-outline my-4' to='/dashboard/add-product'>Add Product</Link></li>
+                                    <li><Link className='btn btn-outline my-4' to='/dashboard/my-products'>My Products</Link></li>
+                                </>
+                            }
+                            {
+                                isAdmin &&
+                                <>
+                                    <li><Link className='btn btn-outline my-4' to='/dashboard/all-sellers'>All Sellers</Link></li>
+                                    <li><Link className='btn btn-outline my-4' to='/dashboard/all-buyers'>All Buyers</Link></li>
+                                    <li><Link className='btn btn-outline my-4' to='/dashboard/reported-items'>Reported Items</Link></li>
+                                </>
+                            }
+                        </div>
+                    </ul>
 
                 </div>
+
             </div>
 
         </div>

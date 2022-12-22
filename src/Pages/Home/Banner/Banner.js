@@ -9,7 +9,7 @@ const Banner = () => {
                 <div>
                     <h1 className="text-6xl font-bold">Find your next car with us</h1>
                     <p className="py-6 text-2xl font-semibold">Leading online automotive marketplace in Bangladesh</p>
-                    <button className="btn btn-primary">View Cars</button>
+                    <button className="btn btn-primary text-white">View Cars</button>
                 </div>
             </div>
         </div>
