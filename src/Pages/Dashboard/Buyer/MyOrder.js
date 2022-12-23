@@ -11,7 +11,7 @@ const MyOrder = () => {
         queryKey: ['orders'],
         queryFn: async () => {
             try {
-                const res = await fetch(`https://car-zone-server.vercel.app/booking?email=${user?.email}`, {
+                const res = await fetch(`http://localhost:5000/booking?email=${user?.email}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }

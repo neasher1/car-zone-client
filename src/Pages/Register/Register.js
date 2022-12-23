@@ -45,7 +45,7 @@ const Register = () => {
             role: account
         }
 
-        fetch('https://car-zone-server.vercel.app/users', {
+        fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -55,7 +55,7 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    fetch(`https://car-zone-server.vercel.app/jwt?email=${email}`)
+                    fetch(`http://localhost:5000/jwt?email=${email}`)
                         .then(res => res.json())
                         .then(data => {
                             if (data.accessToken) {
@@ -83,7 +83,7 @@ const Register = () => {
     const handleSignInGoogle = () => {
         signInWithGoogle(googleProvider)
             .then(res => {
-                fetch(`https://car-zone-server.vercel.app/jwt?email=${res.user.email}`)
+                fetch(`http://localhost:5000/jwt?email=${res.user.email}`)
                     .then(res => res.json())
                     .then(token => {
                         localStorage.setItem('accessToken', token.accessToken);
@@ -92,7 +92,7 @@ const Register = () => {
                             email: res.user.email,
                             role: 'buyer',
                         };
-                        fetch('https://car-zone-server.vercel.app/users', {
+                        fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

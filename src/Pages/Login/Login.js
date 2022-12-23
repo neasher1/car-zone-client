@@ -23,7 +23,7 @@ const Login = () => {
                 toast.success("Successfully logged in");
                 event.target.reset();
 
-                fetch(`https://car-zone-server.vercel.app/jwt?email=${data.email}`)
+                fetch(`http://localhost:5000/jwt?email=${data.email}`)
                     .then(res => res.json())
                     .then(data => {
                         if (data.accessToken) {
@@ -52,7 +52,7 @@ const Login = () => {
     const handleSignInGoogle = () => {
         signInWithGoogle(googleProvider)
             .then(res => {
-                fetch(`https://car-zone-server.vercel.app/jwt?email=${res.user.email}`)
+                fetch(`http://localhost:5000/jwt?email=${res.user.email}`)
                     .then(res => res.json())
                     .then(token => {
                         localStorage.setItem('accessToken', token.accessToken);
@@ -61,7 +61,7 @@ const Login = () => {
                             email: res.user.email,
                             role: 'buyer',
                         };
-                        fetch('https://car-zone-server.vercel.app/users', {
+                        fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

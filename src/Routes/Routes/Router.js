@@ -6,6 +6,7 @@ import AllBuyers from "../../Pages/Dashboard/Admin/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/Admin/AllSellers";
 import ReportedItems from "../../Pages/Dashboard/Admin/ReportedItems";
 import MyOrder from "../../Pages/Dashboard/Buyer/MyOrder";
+import Payment from "../../Pages/Dashboard/Buyer/Payment";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import AddProducts from "../../Pages/Dashboard/Seller/AddProducts";
 import MyProducts from "../../Pages/Dashboard/Seller/MyProducts";
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/:category_name',
-                loader: ({ params }) => fetch(`https://car-zone-server.vercel.app/all-cars/${params.category_name}`),
+                loader: ({ params }) => fetch(`http://localhost:5000/all-cars/${params.category_name}`),
                 element: <PrivateRoute><CarCategories></CarCategories></PrivateRoute>,
             },
             {
@@ -79,6 +80,11 @@ const router = createBrowserRouter([
                 path: '/dashboard/reported-items',
                 element: <ReportedItems></ReportedItems>,
             },
+            {
+                path:'/dashboard/payment/:booking_id',
+                loader: ({params}) => fetch(`http://localhost:5000/booking/${params.booking_id}`),
+                element: <Payment></Payment>
+            }
         ]
     }
 ])
