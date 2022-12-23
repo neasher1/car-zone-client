@@ -18,9 +18,19 @@ const Order = ({ order }) => {
         <p className="font-bold text-primary">Price: ${price}</p>
 
         <div className="card-actions">
-          <Link to={`/dashboard/payment/${_id}`}>
-            <button className="btn btn-primary text-white btn-sm">Pay</button>
-          </Link>
+          {
+            order?.price && !order?.paid &&
+            <Link to={`/dashboard/payment/${_id}`}>
+              <button className="btn btn-primary text-white btn-sm">Pay</button>
+            </Link>
+          }
+
+          {
+            order?.price && order?.paid &&
+            // eslint-disable-next-line jsx-a11y/no-redundant-roles
+            <button className="btn btn-disabled btn-sm text-black" tabindex="-1" role="button" aria-disabled="true">Paid</button>
+          }
+
         </div>
       </div>
     </div>

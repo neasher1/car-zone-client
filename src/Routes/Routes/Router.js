@@ -16,6 +16,9 @@ import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
 import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import AdminRoutes from "./Role Routes/AdminRoutes";
+import BuyerRoutes from "./Role Routes/BuyerRoutes";
+import SellerRoutes from "./Role Routes/SellerRoutes";
 
 const router = createBrowserRouter([
     {
@@ -58,32 +61,32 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/my-orders',
-                element: <MyOrder></MyOrder>,
+                element: <BuyerRoutes><MyOrder></MyOrder></BuyerRoutes>,
             },
             {
                 path: '/dashboard/add-product',
-                element: <AddProducts></AddProducts>,
+                element: <SellerRoutes><AddProducts></AddProducts></SellerRoutes>,
             },
             {
                 path: '/dashboard/my-products',
-                element: <MyProducts></MyProducts>,
+                element: <SellerRoutes><MyProducts></MyProducts></SellerRoutes>,
             },
             {
                 path: '/dashboard/all-buyers',
-                element: <AllBuyers></AllBuyers>,
+                element: <AdminRoutes><AllBuyers></AllBuyers></AdminRoutes>,
             },
             {
                 path: '/dashboard/all-sellers',
-                element: <AllSellers></AllSellers>,
+                element: <AdminRoutes><AllSellers></AllSellers></AdminRoutes>,
             },
             {
                 path: '/dashboard/reported-items',
-                element: <ReportedItems></ReportedItems>,
+                element: <AdminRoutes><ReportedItems></ReportedItems></AdminRoutes>,
             },
             {
-                path:'/dashboard/payment/:booking_id',
-                loader: ({params}) => fetch(`http://localhost:5000/booking/${params.booking_id}`),
-                element: <Payment></Payment>
+                path: '/dashboard/payment/:booking_id',
+                loader: ({ params }) => fetch(`http://localhost:5000/booking/${params.booking_id}`),
+                element: <BuyerRoutes><Payment></Payment></BuyerRoutes>
             }
         ]
     }
