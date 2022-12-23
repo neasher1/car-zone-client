@@ -61,7 +61,7 @@ const Navbar = () => {
                     {
                         ((location.pathname === '/dashboard') || (location.pathname.startsWith('/dashboard/'))) &&
 
-                        <div className="drawer-content block md:hidden">
+                        <div className="drawer-content block lg:hidden">
                             <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button"><MdOutlineDashboardCustomize className='text-2xl text-white' /></label>
                         </div>
                     }
