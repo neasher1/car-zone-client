@@ -6,12 +6,15 @@ LIVE WEBSITE LINK [Car Zone](https://car-zone-f6b1a.web.app/).
 - This Project is Mainly For Buy Sell Second Hand Car
 
 ## Main Feature Of This Website 
-- Anyone Can register on this site with an user or buyer
-- Buyer can buy a car and Seller can upload his car
-- This Website Has Dynamic Routing 
-- This website Made With React , React Bootstrap , React Router And Backend API With Express Js , Use JWT normal version 
+- Applied User Authentication
+- Service websites have 3 roles - Admin, Buyer, and Seller
+- Admin can interact with All Sellers, All Buyers, and Reported Items
+- Buyer can book a car and finally purchase the car
 - This Website is Using Node Js run time and its framework express js 
-- This Website Has Dynamic Login , and Private Routing For Safe This Website Anonymous Review Data , Secured With JWT Token
+- Sellers can upload a new car and he can advertise their unsold car
+
+### Technology Used:
+HTML, CSS, Tailwind, React JS, Node JS, MongoDB, Firebase.
 
 ## Admin Access
 adminEmail: neasher75@gmail.com
