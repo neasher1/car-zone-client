@@ -48,7 +48,7 @@ const DashboardLayout = () => {
                                 <>
                                     <li><Link className='btn btn-outline my-4' to='/dashboard/all-sellers'>All Sellers</Link></li>
                                     <li><Link className='btn btn-outline my-4' to='/dashboard/all-buyers'>All Buyers</Link></li>
-                                    <li><Link className='btn btn-outline my-4' to='/dashboard/reported-items'>Reported Items</Link></li>
+                                    {/* <li><Link className='btn btn-outline my-4' to='/dashboard/reported-items'>Reported Items</Link></li> */}
                                 </>
                             }
                         </div>
