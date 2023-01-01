@@ -8,7 +8,7 @@ LIVE WEBSITE LINK [Car Zone](https://car-zone-f6b1a.web.app/).
 ## Main Feature Of This Website 
 - Applied User Authentication
 - Service websites have 3 roles - Admin, Buyer, and Seller
-- Admin can interact with All Sellers, All Buyers, and Reported Items
+- Admin can interact with All Sellers and Buyers
 - Buyer can book a car and finally purchase the car
 - This Website is Using Node Js run time and its framework express js 
 - Sellers can upload a new car and he can advertise their unsold car
